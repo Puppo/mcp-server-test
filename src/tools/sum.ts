@@ -1,5 +1,6 @@
 import { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import z from "zod";
+import { ToolConfig } from "./types.js";
 
 const getSumToolSchema = z.object({
   numbers: z.string().describe("A comma-separated list of numbers to sum, e.g. '1,2,3'"),
@@ -41,9 +42,9 @@ const sumTool: ToolCallback<typeof getSumToolSchema> = async function (args) {
   }
 }
 
-export const sumToolConfig = {
+export const sumToolConfig: ToolConfig<typeof getSumToolSchema> = {
   name: sumToolName,
   description: "This tool sums a list of numbers provided in a string format and split by commas.",
   inputSchema: getSumToolSchema,
   execute: sumTool
-} as const;
+};

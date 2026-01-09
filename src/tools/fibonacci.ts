@@ -1,5 +1,6 @@
 import { ToolCallback } from "@modelcontextprotocol/sdk/server/mcp.js";
 import z from "zod";
+import { ToolConfig } from "./types.js";
 
 const getFibonacciToolSchema = z.object({
   number: z.number().int().nonnegative().describe("A non-negative integer to compute the Fibonacci number for, e.g. '10'"),
@@ -39,9 +40,9 @@ const fibonacciTool: ToolCallback<typeof getFibonacciToolSchema> = async functio
   }
 }
 
-export const fibonacciToolConfig = {
+export const fibonacciToolConfig: ToolConfig<typeof getFibonacciToolSchema> = {
   name: fibonacciToolName,
   description: "This tool computes the Fibonacci number for a given non-negative integer.",
   inputSchema: getFibonacciToolSchema,
   execute: fibonacciTool
-} as const;
+};
