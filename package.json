@@ -11,7 +11,7 @@
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "test": "node --import tsx --test ./src/**/*.test.ts",
+    "test": "TSX_TSCONFIG_PATH=./test/tsconfig.json node --import tsx --test ./test/**/*.test.ts",
     "build": "tsc && chmod 755 build/index.js",
     "prepack": "npm run build"
   },
