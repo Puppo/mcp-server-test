@@ -29,3 +29,6 @@ jobs:
           publish-mode: oidc
           semver: ${{ github.event.inputs.semver }}
           commit-message: 'chore: release {version}'
+          build-command: |
+            npm install
+            npm run build
