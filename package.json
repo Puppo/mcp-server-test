@@ -8,6 +8,10 @@
   "bin": {
     "mcp": "build/index.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Puppo/mcp-server-test.git"
+  },
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
