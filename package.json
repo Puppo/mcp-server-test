@@ -1,6 +1,6 @@
 {
   "name": "@puppo/mcp-server-test",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A Model Context Protocol (MCP) server providing mathematical utility tools including Fibonacci sequence generation and number summation",
   "main": "build/index.js",
   "types": "build/index.d.ts",
