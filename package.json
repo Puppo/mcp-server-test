@@ -8,10 +8,11 @@
     "mcp": "index.js"
   },
   "scripts": {
-    "prepublishOnly": "npm run build",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "build": "tsc && chmod 755 build/index.js"
+    "build": "tsc && chmod 755 build/index.js",
+    "prepack": "cp README.md build/ 2>/dev/null || true && cp LICENSE build/ 2>/dev/null || true && cp package.json build/ 2>/dev/null || true",
+    "publish:mcp": "npm run build && npm run prepack && cd build"
   },
   "files": [
     "build"
