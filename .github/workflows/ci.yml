@@ -1,33 +1,22 @@
-name: CI
-
+name: ci
 on:
   push:
     branches:
-     - main
-     - next
-     - 'v*'
-    paths-ignore:
-      - 'docs/**'
-      - '*.md'
+      - master
   pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - '*.md'
-
-# This allows a subsequently queued workflow run to interrupt previous runs
-concurrency:
-    group: "${{ github.workflow }}-${{ github.event.pull_request.head.label || github.head_ref || github.ref }}"
-    cancel-in-progress: true
-
-permissions:
-  contents: read
-
 jobs:
-  test:
-    permissions:
-      contents: write
-      pull-requests: write
-    uses: fastify/workflows/.github/workflows/plugins-ci.yml@v5
+  lint-and-test:
+    uses: pkgjs/action/.github/workflows/node-test.yaml@v0
     with:
-      license-check: true
-      lint: true
+      strategy-fail-fast: true
+      test-command: |
+        npm run lint
+        npm test
+  automerge:
+    needs: lint-and-test
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+      contents: write
+    steps:
+      - uses: fastify/github-action-merge-dependabot@v3
