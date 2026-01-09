@@ -2,18 +2,18 @@
   "name": "@puppo/mcp-server-test",
   "version": "0.0.1",
   "description": "A Model Context Protocol (MCP) server providing mathematical utility tools including Fibonacci sequence generation and number summation",
-  "main": "index.js",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
   "type": "module",
   "bin": {
-    "mcp": "index.js"
+    "mcp": "build/index.js"
   },
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "test": "node --import tsx --test ./src/**/*.test.ts",
     "build": "tsc && chmod 755 build/index.js",
-    "prepack": "cp README.md build/ 2>/dev/null || true && cp LICENSE build/ 2>/dev/null || true && cp package.json build/ 2>/dev/null || true",
-    "publish:mcp": "npm run build && npm run prepack && cd build"
+    "prepack": "npm run build"
   },
   "files": [
     "build"
